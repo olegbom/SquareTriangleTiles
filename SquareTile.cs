@@ -16,19 +16,25 @@ namespace SquareTriangleTiles
             {
                 var c = MathF.Cos(Rotate);
                 var s = MathF.Sin(Rotate);
-                _p[0] = _p[4] = Position + new Vector2(c - s, s + c) * SideSize / 2;
-                _p[1] = Position + new Vector2(-c - s, -s + c) * SideSize / 2;
+                _p[1] = _p[4] = Position + new Vector2(c - s, s + c) * SideSize / 2;
+                _p[0] = Position + new Vector2(-c - s, -s + c) * SideSize / 2;
                 _p[2] = Position + new Vector2(-c + s, -s - c) * SideSize / 2;
                 _p[3] = Position + new Vector2(c + s, s - c) * SideSize / 2;
-                _p[0] = Position + new Vector2(c - s, s + c) * SideSize / 2 * 1.3f;
+               // _p[0] = Position + new Vector2(c - s, s + c) * SideSize / 2 * 1.3f;
+                float hue  = (Rotate * 180 / MathF.PI) % 360.0f;
+                if (hue < 0) hue += 360.0f;
+                Color = Raylib.ColorFromHSV(hue, 1f, 1f);
             }
+
+            
 
             unsafe
             {
-                
                 fixed (Vector2* p = &_p[0])
                 {
-                    Raylib.DrawLineStrip(p, 5, Color);
+                   
+                    Raylib.DrawTriangleStrip(p, 4, Color);
+                    //Raylib.DrawLineStrip(p, 5, Raylib.BLACK);
                 }
             }
         }
@@ -86,11 +92,13 @@ namespace SquareTriangleTiles
             };
             result[6] = new TriangleTile()
             {
+                Subclass = 1,
                 Rotate = Rotate,
                 Position = Position + new Vector2(side * (sqrt3 / 3), 0).Rotate(c, s).Rotate(c1, s1),
             };
             result[7] = new TriangleTile()
             {
+                Subclass = 1,
                 Rotate = Rotate + MathF.PI,
                 Position = Position + new Vector2(side * (sqrt3 / 3), 0).Rotate(c, s).Rotate(-c1, -s1),
             };

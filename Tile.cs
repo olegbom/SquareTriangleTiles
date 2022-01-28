@@ -12,6 +12,8 @@ namespace SquareTriangleTiles
         protected static readonly float sqrt3 = MathF.Sqrt(3);
         protected static readonly float sqrt2 = MathF.Sqrt(2);
         public Color Color { get; set; } = Raylib.WHITE;
+        public int Subclass { get; init; } = 0;
+
 
         public Vector2 Position
         {
