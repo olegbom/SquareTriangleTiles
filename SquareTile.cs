@@ -24,6 +24,8 @@ namespace SquareTriangleTiles
                 float hue  = (Rotate * 180 / MathF.PI) % 360.0f;
                 if (hue < 0) hue += 360.0f;
                 Color = Raylib.ColorFromHSV(hue, 1f, 1f);
+
+                Color = Raylib.GetColor(0x30_1B_28_FF);
             }
 
             

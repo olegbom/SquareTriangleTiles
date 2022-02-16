@@ -24,6 +24,15 @@ namespace SquareTriangleTiles
                 float hue = (Rotate * 180 / MathF.PI) % 360.0f;
                 if (hue < 0) hue += 360.0f;
                 Color = Raylib.ColorFromHSV(hue, 1, 1);
+
+                if (Subclass == 0)
+                {
+                    Color = Raylib.GetColor(0xDD_C5_A2_FF);
+                }
+                else
+                {
+                    Color = Raylib.GetColor(0xB6_45_2C_FF);
+                }
             }
 
             unsafe
@@ -31,7 +40,7 @@ namespace SquareTriangleTiles
                 fixed (Vector2* p = &_p[0])
                 {
                 
-                    //Raylib.DrawTriangleStrip(p, 3, Color);
+                    Raylib.DrawTriangleStrip(p, 3, Color);
                     // Raylib.DrawLineStrip(p, 4, Color);
                 }
             }
@@ -67,7 +76,7 @@ namespace SquareTriangleTiles
                 (c1, s1) = Helper.CosSin(MathF.PI * 13 / 12);
                 result[3] = new TriangleTile
                 {
-                                        Rotate = Rotate + MathF.PI / 6,
+                    Rotate = Rotate + MathF.PI / 6,
                     Position = Position + new Vector2(side * (0.5f + sqrt3 / 6) * sqrt2, 0).Rotate(c, s).Rotate(c1, s1)
                 };
                 result[4] = new TriangleTile

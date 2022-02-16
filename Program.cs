@@ -10,7 +10,7 @@ namespace SquareTriangleTiles
         static void Main(string[] args)
         {
 
-            Raylib.SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
+            //Raylib.SetConfigFlags(ConfigFlags.FLAG_MSAA_4X_HINT);
 
             Raylib.InitWindow(1280, 720, "Hello, Raylib-CsLo");
             Raylib.SetTargetFPS(60);
@@ -19,7 +19,7 @@ namespace SquareTriangleTiles
             List<Tile> tiles = new List<Tile>();
             tiles.AddRange(tt.Substitution());
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 2; i++)
             {
                 var nextGen = new List<Tile>();
                 foreach (var tile in tiles)
@@ -55,8 +55,7 @@ namespace SquareTriangleTiles
 
                
                 Raylib.EndMode2D();
-
-         
+                
                 Raylib.EndDrawing();
             }
             Raylib.CloseWindow();
